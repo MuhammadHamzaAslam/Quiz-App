@@ -53,9 +53,7 @@ h3#question {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-img{
-    display: none;
-}
+
 .ans-btn:hover {
     background-color: #e9ecef;
 }
@@ -100,4 +98,11 @@ button#nextBtn:hover {
     button#nextBtn {
         padding: 8px 16px;
     }
+}
+img{
+    height: 100px;
+    width: 200px;
+}
+#failImg,#passImg{
+    display: none;
 }

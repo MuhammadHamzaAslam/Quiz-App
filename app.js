@@ -229,12 +229,14 @@ function initializeQue() {
     } else {
         let percentage = correctAns / questionObj.length * 100
         if (percentage < 70) {
-            failImg.style.display = 'block'
+            
+            question.innerHTML = ` ${failImg.style.display = 'block'} <br> Quiz finished! Your Score: ${percentage}%, <br> Wrong answers: ${wrongAns}`;
         }
         else{
             passImg.style.display = 'block'
+            question.innerHTML = `Quiz finished! Your Score: ${correctAns / questionObj.length * 100}%, <br> Wrong answers: ${wrongAns}`;
         }
-        question.innerHTML = `Quiz finished! Your Score: ${correctAns / questionObj.length * 100}%, <br> Wrong answers: ${wrongAns}`;
+        
         nextBtn.disabled = true;
         hideRadioButtons();
     }
