@@ -201,11 +201,14 @@ let questionObj = [
     }
 ];
 
-let options = document.querySelectorAll('input[name="o1"]');
+let options = document.querySelectorAll('.option');
 let index = 0;
 let question = document.getElementById('question');
 let correctAns = 0;
 let wrongAns = 0;
+let nextBtn = document.getElementById('nextBtn');
+let failImg = document.getElementById('failImg')
+let passImg = document.getElementById('passImg')
 
 function initializeQue() {
     if (index < questionObj.length) {
@@ -220,33 +223,43 @@ function initializeQue() {
         for (let option of options) {
             option.checked = false;
         }
+
+       
+        nextBtn.disabled = true;
     } else {
+        let percentage = correctAns / questionObj.length * 100
+        if (percentage < 70) {
+            failImg.style.display = 'block'
+        }
+        else{
+            passImg.style.display = 'block'
+        }
         question.innerHTML = `Quiz finished! Your Score: ${correctAns / questionObj.length * 100}%, <br> Wrong answers: ${wrongAns}`;
-        document.getElementById('nextBtn').disabled = true;
+        nextBtn.disabled = true;
         hideRadioButtons();
     }
 }
 
-let nextBtn = document.getElementById('nextBtn');
+for (let option of options) {
+    option.addEventListener('change', () => {
+        nextBtn.disabled = false; 
+    });
+}
+
 nextBtn.addEventListener('click', () => {
     if (index < questionObj.length) {
-        checkingAns(); 
-        index++; 
-        initializeQue(); 
+        checkingAns();
+        index++;
+        initializeQue();
+        nextBtn.disabled = true; 
     }
 });
 
 function checkingAns() {
-    let data = questionObj[index]; 
+    let data = questionObj[index];
     let ans = getAns();
     if (ans === data.correct) {
         correctAns++;
-        if (correctAns <= 17) {
-            alert('You Failed')
-        }
-        else{
-            alert('You Won')
-        }
     } else {
         wrongAns++;
         console.log(wrongAns);
@@ -256,15 +269,12 @@ function checkingAns() {
 function getAns() {
     for (let i = 0; i < options.length; i++) {
         if (options[i].checked) {
-            nextBtn.style.display = 'block';
             return options[i].nextElementSibling.innerText;
         }
     }
     
-    // If no option is selected, hide the Next button
-    nextBtn.style.display = 'none';
-    return null;
 }
+
 function hideRadioButtons() {
     for (let option of options) {
         option.parentElement.style.display = 'none';
@@ -272,3 +282,35 @@ function hideRadioButtons() {
 }
 
 initializeQue();
+
+// Your existing code for handling local storage and logout button remains unchanged
+if (localStorage.getItem('tr') !== 'true') {
+    localStorage.removeItem('tr');
+    window.location.href = 'index.html';
+} else {
+    document.getElementById('span').innerText = localStorage.getItem('name');
+}
+
+let btn_2 = document.getElementById('btn_2');
+btn_2.addEventListener('click', () => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You want to logout",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, logout it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Logged Out!",
+                text: "Your account has been logged out.",
+                icon: "success"
+            }).then(() => {
+                localStorage.removeItem('tr');
+                window.location.href = 'index.html';
+            });
+        }
+    });
+});
