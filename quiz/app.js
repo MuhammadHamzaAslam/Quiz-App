@@ -1,18 +1,18 @@
 let questionObj = [
     {
         que: 'What Does Html Stands For',
-        a: 'Hyper',
+        a: 'Hyper Texture Markup Language',
         b: 'Hyper Text Markup Language',
-        c: 'Hyper',
-        d: 'Hyper',
+        c: 'Hyper Color Markup Language',
+        d: 'Hyper Text Mark Lang',
         correct: 'Hyper Text Markup Language'
     },
     {
         que: 'What Does Css Stands For',
-        a: 'Colorful',
+        a: 'Colorful Style Sheet',
         b: 'Cascading Style Sheet',
-        c: 'casc',
-        d: 'hee',
+        c: 'Cascading Sheet Sheet',
+        d: 'Cascading ',
         correct: 'Cascading Style Sheet'
     },
     {
@@ -230,11 +230,10 @@ function initializeQue() {
         let percentage = correctAns / questionObj.length * 100
         if (percentage < 70) {
             
-            question.innerHTML = ` ${failImg.style.display = 'block'} <br> Quiz finished! Your Score: ${percentage}%, <br> Wrong answers: ${wrongAns}`;
+            question.innerHTML = `<div id="final"> <br> ${failImg.style.display = 'block'} <br> Quiz finished! Your Score: ${percentage}%, <br> Wrong answers: ${wrongAns}</div> `;
         }
         else{
-            passImg.style.display = 'block'
-            question.innerHTML = `Quiz finished! Your Score: ${correctAns / questionObj.length * 100}%, <br> Wrong answers: ${wrongAns}`;
+            question.innerHTML = `<div id="final"> <br> ${passImg.style.display = 'block'} <br>  Quiz finished! Your Score: ${correctAns / questionObj.length * 100}%, <br> Wrong answers: ${wrongAns}</div>`;
         }
         
         nextBtn.disabled = true;

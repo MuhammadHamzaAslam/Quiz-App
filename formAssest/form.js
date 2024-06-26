@@ -30,7 +30,7 @@ loginSubmitBtn.addEventListener('click', (event) => {
     let pass = document.getElementById('pass').value;
     if (mail === localStorage.getItem('mail') && pass === localStorage.getItem('pass')) {
         localStorage.setItem('tr', 'true'); 
-        window.location.href = 'quiz.html';
+        window.location.href = 'quiz/quiz.html';
         mail.value = ''
         pass.value = ''
     } else {
