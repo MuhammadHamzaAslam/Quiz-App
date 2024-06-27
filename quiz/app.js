@@ -209,7 +209,6 @@ let wrongAns = 0;
 let nextBtn = document.getElementById('nextBtn');
 let failImg = document.getElementById('failImg')
 let passImg = document.getElementById('passImg')
-
 function initializeQue() {
     if (index < questionObj.length) {
         let data = questionObj[index];
@@ -227,13 +226,14 @@ function initializeQue() {
        
         nextBtn.disabled = true;
     } else {
-        let percentage = correctAns / questionObj.length * 100
+        let percentage = Math.floor(correctAns / questionObj.length * 100)
         if (percentage < 70) {
-            
-            question.innerHTML = `<div id="final"> <br> ${failImg.style.display = 'block'} <br> Quiz finished! Your Score: ${percentage}%, <br> Wrong answers: ${wrongAns}</div> `;
+            failImg.style.display = 'block'
+            question.innerHTML = `<div id="final">  <br> Quiz finished! Your Score: ${percentage}%, <br> Wrong answers: ${wrongAns}</div> `;
         }
         else{
-            question.innerHTML = `<div id="final"> <br> ${passImg.style.display = 'block'} <br>  Quiz finished! Your Score: ${correctAns / questionObj.length * 100}%, <br> Wrong answers: ${wrongAns}</div>`;
+            passImg.style.display = 'block'
+            question.innerHTML = `<div id="final">  <br>  Quiz finished! Your Score: ${percentage}%, <br> Wrong answers: ${wrongAns}</div>`;
         }
         
         nextBtn.disabled = true;
@@ -282,12 +282,14 @@ function hideRadioButtons() {
     }
 }
 
-initializeQue();
+    initializeQue()
 
-// Your existing code for handling local storage and logout button remains unchanged
+
+
+
 if (localStorage.getItem('tr') !== 'true') {
     localStorage.removeItem('tr');
-    window.location.href = 'index.html';
+    window.location.href = '../index.html';
 } else {
     document.getElementById('span').innerText = localStorage.getItem('name');
 }
@@ -310,7 +312,7 @@ btn_2.addEventListener('click', () => {
                 icon: "success"
             }).then(() => {
                 localStorage.removeItem('tr');
-                window.location.href = 'index.html';
+                window.location.href = '../index.html';
             });
         }
     });
