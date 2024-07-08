@@ -42,6 +42,9 @@ h3#question {
 
 .option {
     /* display: none; */
+    accent-color: green;
+    border: 3px solid rgb(228, 10, 10) !important;
+    
 }
 
 .ans-btn {
@@ -52,7 +55,7 @@ h3#question {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 42vw;
+    width: auto;
 }
 
 .ans-btn:hover {

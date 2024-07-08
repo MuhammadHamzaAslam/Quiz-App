@@ -1,6 +1,6 @@
 let questionObj = [
     {
-        que: 'What Does Html Stands For',
+        que: 'What does HTML stand for?',
         a: 'Hyper Texture Markup Language',
         b: 'Hyper Text Markup Language',
         c: 'Hyper Color Markup Language',
@@ -8,19 +8,19 @@ let questionObj = [
         correct: 'Hyper Text Markup Language'
     },
     {
-        que: 'What Does Css Stands For',
-        a: 'Colorful Style Sheet',
-        b: 'Cascading Style Sheet',
-        c: 'Cascading Sheet Sheet',
-        d: 'Cascading ',
-        correct: 'Cascading Style Sheet'
+        que: 'What symbol is used to end a tag?',
+        a: '^',
+        b: '*',
+        c: '/',
+        d: '\\',
+        correct: '/'
     },
     {
-        que: 'Which tag is used to declare a table in html',
-        a: "<tablw>",
-        b: "<table> </table>",
-        c: "<tabl2>",
-        d: "<table>",
+        que: 'Which tag is used to declare a table in HTML?',
+        a: '<tablw>',
+        b: '<table> </table>',
+        c: '<tabl2>',
+        d: '<table>',
         correct: '<table> </table>'
     },
     {
@@ -80,12 +80,12 @@ let questionObj = [
         correct: 'alt'
     },
     {
-        que: 'Which HTML element is used to define a footer for a document or section?',
-        a: '<bottom>',
-        b: '<footer>',
-        c: '<foot>',
-        d: '<end>',
-        correct: '<footer>'
+        que: 'Which HTML element is used to give a line?',
+        a: '<line>',
+        b: '<br>',
+        c: '<hr>',
+        d: '<a>',
+        correct: '<hr>'
     },
     {
         que: 'What is the correct HTML element for inserting a line break?',
@@ -120,12 +120,12 @@ let questionObj = [
         correct: '<ul>'
     },
     {
-        que: 'Which HTML tag is used to define an internal style sheet?',
-        a: '<style>',
-        b: '<css>',
-        c: '<script>',
-        d: '<link>',
-        correct: '<style>'
+        que: 'Where do you place the path to an image in HTML?',
+        a: 'src=""',
+        b: 'alt=""',
+        c: 'max=""',
+        d: 'id=""',
+        correct: 'src=""'
     },
     {
         que: 'What is the correct HTML element for playing video files?',
@@ -160,7 +160,7 @@ let questionObj = [
         correct: '<header>'
     },
     {
-        que: 'What is the correct HTML for making a text area?',
+        que: 'What is the correct HTML element for making a text area?',
         a: '<input type="textarea">',
         b: '<textarea>',
         c: '<text>',
@@ -168,12 +168,12 @@ let questionObj = [
         correct: '<textarea>'
     },
     {
-        que: 'Which HTML tag is used to define a client-side script (JavaScript)?',
-        a: '<script>',
-        b: '<javascript>',
-        c: '<js>',
-        d: '<code>',
-        correct: '<script>'
+        que: 'Which HTML tag is used to insert audio?',
+        a: '<audio>',
+        b: '<voice>',
+        c: '<video>',
+        d: '<iframe>',
+        correct: '<audio>'
     },
     {
         que: 'What is the correct HTML for creating a hyperlink that opens in a new tab?',
@@ -201,6 +201,7 @@ let questionObj = [
     }
 ];
 
+
 let options = document.querySelectorAll('.option');
 let index = 0;
 let question = document.getElementById('question');
@@ -227,7 +228,7 @@ function initializeQue() {
         nextBtn.disabled = true;
     } else {
         let percentage = Math.floor(correctAns / questionObj.length * 100)
-        if (percentage < 70) {
+        if (percentage < 60) {
             failImg.style.display = 'block'
             question.innerHTML = `<div id="final">  <br> Quiz finished! Your Score: ${percentage}%, <br> Wrong answers: ${wrongAns}</div> `;
         }
@@ -236,7 +237,10 @@ function initializeQue() {
             question.innerHTML = `<div id="final">  <br>  Quiz finished! Your Score: ${percentage}%, <br> Wrong answers: ${wrongAns}</div>`;
         }
         
-        nextBtn.disabled = true;
+        nextBtn.disabled = false;
+        nextBtn.addEventListener('click',()=>{
+            window.location.href = '../index.html'
+        })
         hideRadioButtons();
     }
 }
